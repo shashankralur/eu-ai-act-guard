@@ -3,8 +3,15 @@ import typer
 app = typer.Typer()
 
 @app.command()
-def init():
-    print("Welcome to Eu AI Guard")
+def init(
+    project_name: str,
+    verbose: bool = False
+):
+    """
+    Initialize a new AI project for compliance tracking.
+    """
+
+    print(f"Project: {project_name}")
     
 @app.command()
 def report():
