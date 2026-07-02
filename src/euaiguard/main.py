@@ -12,6 +12,7 @@ IGNORED_DIRS = {
     "node_modules",
     "euaiguard.egg-info",
     "build",
+    "__init__"
 }
 
 

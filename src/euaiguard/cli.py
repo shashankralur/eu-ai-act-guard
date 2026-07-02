@@ -1,7 +1,7 @@
 import typer
 
-from euaiguard.commands.init import init
-from euaiguard.commands.report import report
+from src.euaiguard.commands.init import init
+from src.euaiguard.commands.report import report
 
 app = typer.Typer()
 
