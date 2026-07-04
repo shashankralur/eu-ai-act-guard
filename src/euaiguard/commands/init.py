@@ -1,5 +1,12 @@
 from pathlib import Path
 import json
+from euaiguard.discovery.packages import (
+    detect_installed_packages,
+    detect_used_packages,
+)
+
+# packages = detect_packages()
+    
 
 ARTICLE_NAME = "article_02"
 
@@ -69,6 +76,12 @@ def save_article(article_name: str, questions: list):
         "completed": all(q["answer"] is not None for q in questions),
         "answers": {
             q["key"]: q["answer"] for q in questions
+        },
+        "auto_detected": {
+            "packages": {
+                "installed": detect_installed_packages(),
+                "used": detect_used_packages(PROJECT_ROOT)
+            }
         }
     }
 
@@ -76,6 +89,7 @@ def save_article(article_name: str, questions: list):
 
     with open(file, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4)
+        
 
 def load_article(article_name: str):
     """Load saved answers if present."""
@@ -170,6 +184,19 @@ def init():
     save_article(ARTICLE_NAME, results)
 
     print_summary(results)
+
+
+    print("\n========== AUTO DETECTED ==========\n")
+    installed = detect_installed_packages()
+    used = detect_used_packages(PROJECT_ROOT)
+
+    print("Installed Packages:")
+    for _, name in installed.items():
+        print(f"✓ {name}")
+
+    print("\nUsed Packages:")
+    for _, name in used.items():
+        print(f"✓ {name}")
 
     print(f"\n✓ Answers saved to: {ARTICLES_DIR / f'{ARTICLE_NAME}.json'}")
 

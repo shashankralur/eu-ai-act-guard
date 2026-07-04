@@ -7,5 +7,15 @@
         "business_role": "Deployer",
         "research_only": false,
         "military_use": false
+    },
+    "auto_detected": {
+        "packages": {
+            "installed": {
+                "fastapi": "FastAPI"
+            },
+            "used": {
+                "fastapi": "FastAPI"
+            }
+        }
     }
 }
