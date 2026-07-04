@@ -3,9 +3,9 @@
     "completed": true,
     "answers": {
         "is_ai_system": true,
-        "serves_eu_users": false,
-        "business_role": "Importer",
-        "research_only": true,
+        "serves_eu_users": true,
+        "business_role": "Deployer",
+        "research_only": false,
         "military_use": false
     }
 }

@@ -7,13 +7,13 @@ ARTICLE_NAME = "article_02"
 PROJECT_ROOT = Path.cwd()
 
 # EUAI project structure
-EUAI_DIR = PROJECT_ROOT / ".euai"
+EUAI_DIR = PROJECT_ROOT / ".euaiguard"
 ARTICLES_DIR = EUAI_DIR / "articles"
 REPORTS_DIR = EUAI_DIR / "reports"
 LOGS_DIR = EUAI_DIR / "logs"
 
 def create_project_structure():
-    """Create the .euai project structure if it doesn't exist."""
+    """Create the .euaiguard project structure if it doesn't exist."""
     ARTICLES_DIR.mkdir(parents=True, exist_ok=True)
     REPORTS_DIR.mkdir(parents=True, exist_ok=True)
     LOGS_DIR.mkdir(parents=True, exist_ok=True)
