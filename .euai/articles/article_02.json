@@ -1,0 +1,11 @@
+{
+    "article": "article_02",
+    "completed": true,
+    "answers": {
+        "is_ai_system": true,
+        "serves_eu_users": false,
+        "business_role": "Importer",
+        "research_only": true,
+        "military_use": false
+    }
+}
