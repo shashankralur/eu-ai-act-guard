@@ -34,6 +34,11 @@ export default function Dashboard(props: IDashboardProps) {
 
   if (!data) return <h2>No data found.</h2>;
 
+
+  const installedPackages = data?.auto_detected?.packages?.installed ?? [];
+  const usedPackages = data?.auto_detected?.packages?.used ?? [];
+
+
   return (
     <div style={{ padding: "20px" }}>
       <h1>EU AI Dashboard</h1>
@@ -57,6 +62,17 @@ export default function Dashboard(props: IDashboardProps) {
           ))}
         </tbody>
       </table>
+      <h1>Used & Detected Packages</h1>
+      <div>
+        <h2>Installed Packages</h2>
+        <ul>
+          {Object?.values(installedPackages)?.map((pkg: any, index: number) => (
+            <li key={index}>
+              {pkg.name} - {pkg.version}
+            </li>
+          ))}
+        </ul>
+      </div>
 
       {/* <h3>Raw API Response</h3>
       <pre>{JSON.stringify(data, null, 2)}</pre> */}

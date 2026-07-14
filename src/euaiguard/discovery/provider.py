@@ -1,41 +1,22 @@
-from importlib.util import find_spec
 from pathlib import Path
 import ast
 
-PACKAGES = {
+PROVIDERS = {
     "openai": "OpenAI",
     "anthropic": "Anthropic",
     "google.genai": "Google Gemini",
     "google.generativeai": "Google Gemini",
     "ollama": "Ollama",
-    "transformers": "Hugging Face",
-    "langchain": "LangChain",
-    "llama_index": "LlamaIndex",
-    "crewai": "CrewAI",
-    "autogen": "AutoGen",
-    "fastapi": "FastAPI",
-    "flask": "Flask",
-    "django": "Django",
+    "cohere": "Cohere",
+    "mistralai": "Mistral AI",
+    "groq": "Groq",
+    "azure.ai.inference": "Azure AI",
+    "azure.ai.openai": "Azure OpenAI",
+    "boto3": "Amazon Bedrock",
 }
 
 
-def detect_installed_packages():
-    """Packages installed in the current Python environment."""
-    detected = {}
-
-    for module, name in PACKAGES.items():
-        try:
-            if find_spec(module) is not None:
-                detected["name"] = name
-                detected["module"] = module
-        except ModuleNotFoundError:
-            continue
-
-    return detected
-
-
-def detect_used_packages(project_root: Path):
-    """Packages actually imported in the project source code."""
+def detect_ai_providers(project_root: Path):
     detected = {}
 
     for py_file in project_root.rglob("*.py"):
@@ -61,9 +42,9 @@ def detect_used_packages(project_root: Path):
                         modules = [node.module]
 
                 for module in modules:
-                    for pkg, name in PACKAGES.items():
+                    for pkg, provider in PROVIDERS.items():
                         if module.startswith(pkg):
-                            detected[pkg] = name
+                            detected[pkg] = provider
 
         except Exception:
             continue

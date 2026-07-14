@@ -5,6 +5,7 @@ from euaiguard.discovery.packages import (
     detect_used_packages,
 )
 
+from euaiguard.discovery.provider import detect_ai_providers
 # packages = detect_packages()
     
 
@@ -81,7 +82,8 @@ def save_article(article_name: str, questions: list):
             "packages": {
                 "installed": detect_installed_packages(),
                 "used": detect_used_packages(PROJECT_ROOT)
-            }
+            },
+            "ai_providers": detect_ai_providers(PROJECT_ROOT)
         }
     }
 
@@ -178,11 +180,8 @@ def init():
     print("Initializing EU AI Act Scope Assessment...")
 
     create_project_structure()
-
     results = ask_questions(questions)
-
     save_article(ARTICLE_NAME, results)
-
     print_summary(results)
 
 
